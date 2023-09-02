@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from bs4 import BeautifulSoup
 import requests
 from datetime import datetime
-
+import pytz
 from telebot.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 load_dotenv()
@@ -41,7 +41,8 @@ def retrieve_petrol_price():
 
 
 def build_html(data):
-    html = f"Petrol Price for <b>{datetime.today().strftime('%d-%m-%Y')}</b> \n\n"
+    sg_timezone = pytz.timezone('Asia/Singapore')
+    html = f"Petrol Price for <b>{datetime.now(sg_timezone).strftime('%d-%m-%Y')}</b> \n\n"
     for grade, petrol_prices in data.items():
         html += f"<b>Grade : {grade}</b> \n"
         for company, price in petrol_prices.items():
