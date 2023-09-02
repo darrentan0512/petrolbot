@@ -1,1 +1,1 @@
-web: gunicorn run:petrol-bot
+web: python main.py
