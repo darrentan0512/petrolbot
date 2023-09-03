@@ -60,6 +60,9 @@ def retrieve_esso_price():
 #              InlineKeyboardButton("Hackerrank", callback_data='HRlist8')]]
 # reply_markup = InlineKeyboardMarkup(keyboard)
 
+@bot.message_handler(commands=['start'])
+def send_welcome(message):
+    bot.reply_to(message, "/price for petrol prices")
 
 @bot.message_handler(commands=['price'])
 def send_welcome(message):
@@ -79,7 +82,7 @@ def callback(call):  # <- passes a CallbackQuery type object to your function
 
 @bot.message_handler(func=lambda msg: True)
 def echo_all(message):
-    bot.reply_to(message, message.text)
+    bot.reply_to(message, "Try /price for petrol prices")
 
 
 bot.infinity_polling()
